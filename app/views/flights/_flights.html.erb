@@ -1,0 +1,9 @@
+<% @flights.each do |flight| %> 
+    <div>
+    <%= radio_button_tag(:flight, flight.id)%>
+    <%= label_tag(:flight, " " )%> 
+    <%= flight.readable_time %>
+    Price: $<%= flight.price %>         
+    </div>
+<% end %>
+

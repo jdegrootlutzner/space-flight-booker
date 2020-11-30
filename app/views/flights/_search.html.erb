@@ -1,0 +1,18 @@
+<%# 
+I use local: true to prevent a AJAX request and instead
+ prompt a complete 'request response cycle.' I would like to 
+ relook at this project when I better understand where I would
+ append the Response? 
+ https://guides.rubyonrails.org/working_with_javascript_in_rails.html
+ %>
+ Search for available flights within the next week.
+<%= form_with(local: true, url: flights_path, method: 'get' ) do %>
+  <%= hidden_field_tag :search, "true" %>
+  <%= label_tag(:date, 'Date:')%>
+  <%= select_date Date.today, prefix: 'date'%>
+  <%= label_tag(:from, 'From:')%> 
+  <%= collection_select(:flight, :from_id, @airports, :id, :location, {selected: flight.from.id}) %>
+  <%= label_tag(:to, 'To:')%> 
+  <%= collection_select(:flight, :to_id, @airports, :id, :location, {selected: flight.to.id}) %>  
+  <%= submit_tag('Search') %>
+<% end %>
