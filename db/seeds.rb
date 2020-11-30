@@ -11,7 +11,7 @@ DAYS_IN_THE_FUTURE = 7
 TIME_INTERVAL_MINUTES = 15
 MINUTES_IN_HOUR = 60
 NUMBER_OF_INTERVALS = MINUTES_IN_HOUR * 24 / TIME_INTERVAL_MINUTES
-planets = %w[Mercury Venus Earth Mars Jupiter Saturn Uranus Neptune]
+PLANETS = %w[Mercury Venus Earth Mars Jupiter Saturn Uranus Neptune]
 
 DISTANCES = {
   Mercury: 0.39,
@@ -59,13 +59,22 @@ def create_flight(date, origin, destination, origin_id, destination_id)
                 to_id: destination_id)
 end
 
-Date.today.upto(Date.today + DAYS_IN_THE_FUTURE).each do |date|
-  planets.each do |origin|
-    planets.each do |destination|
-      origin_id = Airport.find_by(location: origin).id
-      destination_id = Airport.find_by(location: destination).id
+# I have a weird but uninhibiting bug in the seed code
+# I should only be generating 5 flights from each destination on each 
+# day but some days I am generating more or less than 5.
+# I think the problem could be with #random_time but I 
+# could not find a problem in the initial pass.
+# This bug does not effect performance
+
+PLANETS.each do |origin|
+  PLANETS.each do |destination|
+    next if origin == destination
+
+    origin_id = Airport.find_by(location: origin).id
+    destination_id = Airport.find_by(location: destination).id
+    Date.today.upto(Date.today + DAYS_IN_THE_FUTURE).each do |date|
       (1..DAILY_NUMBER_OF_FLIGHTS).each do
-        create_flight(date, origin, destination, origin_id, destination_id) unless origin == destination
+        create_flight(date, origin, destination, origin_id, destination_id) 
       end
     end
   end

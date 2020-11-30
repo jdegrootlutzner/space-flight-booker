@@ -1,0 +1,16 @@
+
+Flights for <%= flight.readable_date%>
+
+Duration: <%= flight.duration %> <%= 'hour'.pluralize(flight.duration)%>
+
+<div>
+<%= flight.from.location%> 
+<%= flight.from.abbreviation%> 
+</div>
+->
+<div>
+<%= flight.to.location%>
+<%= flight.to.abbreviation%>
+</div>
+
+<%# Add divs. Change Trip names. Make forms stay on last search %>
