@@ -1,9 +1,16 @@
-<% @flights.each do |flight| %> 
+<%= form_with(local: true, url: new_booking_path, method: 'get') do %>
+  <% @flights.each do |flight, index| %> 
     <div>
-    <%= radio_button_tag(:flight, flight.id)%>
-    <%= label_tag(:flight, " " )%> 
+    <%= radio_button_tag('booking[flight_id]', flight.id, value: 1 )%>
+    <label for=<%=flight.label_html_tag%> >
+    
     <%= flight.readable_time %>
-    Price: $<%= flight.price %>         
+    Price: $<%= flight.price %>     
+    </label>
     </div>
-<% end %>
+  <% end %>
 
+  <%= label_tag(:num_passengers, 'Number of Passengers:')%> 
+  <%= select(:booking, :num_passengers, 1..5) %>  
+  <%= submit_tag('Book') %>
+<% end %>

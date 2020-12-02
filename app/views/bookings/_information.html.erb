@@ -1,0 +1,15 @@
+Flight Information:
+<% unless @flight.nil?%>
+<div>
+<%= @flight.from.location %>
+<%= @flight.from.abbreviation %>
+&#x2708
+<%= @flight.to.location %>
+<%= @flight.to.abbreviation %>
+</div>
+
+<%= @flight.duration %> Hours
+
+<%= @num_passengers %>
+ <%= 'Passenger'.pluralize(@num_passengers)%>
+<% end %>

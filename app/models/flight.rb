@@ -1,7 +1,7 @@
 class Flight < ApplicationRecord
-  validate :circular_flight
   belongs_to :from, class_name: 'Airport'
   belongs_to :to, class_name: 'Airport'
+  validate :circular_flight
   validates :from, :to, :price, presence: true
 
   def circular_flight
@@ -30,6 +30,10 @@ class Flight < ApplicationRecord
 
   def readable_date
     date.strftime('%A, %B %e, %Y')
+  end
+
+  def label_html_tag
+    "booking_flight_id_#{self.id}"
   end
 
   private 

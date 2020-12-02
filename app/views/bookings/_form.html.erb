@@ -1,0 +1,26 @@
+  <%= form_with model: @booking , local: true do |f|%>
+   
+    <%= f.fields_for :passengers do |p | %> 
+        Passenger <%= p.index + 1%> Information
+
+        <div>
+        <%= p.label :first_name, 'First Name:'%>
+        <%= p.text_field :first_name%>
+        </div>
+        <div>
+        <%= p.label :last_name, 'Last Name:'%>
+        <%= p.text_field :last_name %>
+        </div>
+        <div>
+        <%= p.label :email, 'Email:'%>
+
+        <%= p.text_field :email %>
+        </div>
+    <% end %>
+    <%= f.hidden_field :num_passengers, value: @num_passengers %>
+    <%= f.hidden_field :flight_id, value: @flight.id %>
+
+    <%= submit_tag('Place Order') %>
+
+
+ <% end %>

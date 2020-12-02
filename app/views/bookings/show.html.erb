@@ -1,0 +1,23 @@
+Congratulations! You're all booked and headed to <%= @booking.flight.to.location %>
+
+
+
+<% @booking.passengers.each do |p| %>
+
+<div>
+<%= @booking.flight.from.abbreviation %>
+<%= @booking.flight.from.location %>
+
+<%= @booking.flight.to.abbreviation %>
+<%= @booking.flight.to.location %>
+
+</div>
+<div>
+
+<%= p.first_name %>
+<%= p.last_name %>
+
+</div>
+
+<% end %>
+<%= link_to 'Book a new flight.', :root %>

@@ -2,6 +2,7 @@ class FlightsController < ApplicationController
   def index
     @airports = Airport.all
     @flights = Flight.search params
+    @params = params
   end
 
   # I am a bit confused about Strong Parameters

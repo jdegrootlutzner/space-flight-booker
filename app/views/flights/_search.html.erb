@@ -11,8 +11,10 @@ I use local: true to prevent a AJAX request and instead
   <%= label_tag(:date, 'Date:')%>
   <%= select_date Date.today, prefix: 'date'%>
   <%= label_tag(:from, 'From:')%> 
-  <%= collection_select(:flight, :from_id, @airports, :id, :location, {selected: flight.from.id}) %>
+  <% previous_from = @params[:flight][:from_id] if @params[:search]%>
+  <% previous_to = @params[:flight][:to_id]if @params[:search]%>
+  <%= collection_select(:flight, :from_id, @airports, :id, :location, {selected: previous_from} ) %>
   <%= label_tag(:to, 'To:')%> 
-  <%= collection_select(:flight, :to_id, @airports, :id, :location, {selected: flight.to.id}) %>  
+  <%= collection_select(:flight, :to_id, @airports, :id, :location, {selected: previous_to} ) %>  
   <%= submit_tag('Search') %>
 <% end %>
