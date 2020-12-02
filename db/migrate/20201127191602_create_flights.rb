@@ -4,10 +4,12 @@ class CreateFlights < ActiveRecord::Migration[5.2]
       t.datetime :date
       t.integer :duration
       t.integer :price
-      t.references :from, foreign_key: true
-      t.references :to, foreign_key: true
+      t.references :from
+      t.references :to
 
       t.timestamps
     end
+    add_foreign_key :flights, :airports, column: :from_id
+    add_foreign_key :flights, :airports, column: :to_id
   end
 end
