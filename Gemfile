@@ -73,3 +73,6 @@ gem 'letter_opener', group: :development
 
 # Add Env variables in figaro
 gem 'figaro'
+
+# for heroku email
+gem 'sendgrid-ruby'
