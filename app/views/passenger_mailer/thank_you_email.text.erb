@@ -1,0 +1,13 @@
+Hi <%= @passenger.first_name %>!
+
+Congraluations on booking your flight to <%= @flight.to.location %>.
+
+Your payment of $<%= @flight.price%> is required on the day of departure.
+
+To view confirmation of your booking please visit:
+
+    <%= booking_url(@booking.id)%>
+
+Looking forward to your payment,
+
+Odin Airs

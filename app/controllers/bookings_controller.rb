@@ -10,6 +10,9 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(allowed_params)
     if @booking.save
+      @booking.passengers.each do |passenger|
+        PassengerMailer.with(passenger: passenger, booking: @booking).thank_you_email.deliver_later
+      end
       redirect_to booking_path(@booking.id), notice: 'Event was successfully created.'
     else
       set_displayed_values

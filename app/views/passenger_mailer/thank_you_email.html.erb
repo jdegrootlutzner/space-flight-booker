@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h3>
+     Hi <%= @passenger.first_name %>!
+    </h3>
+    <p>
+    Thank you for choosing Odin Airs! We could not be happier for your one-way trip to <%= @flight.to.location%>! 
+    </p>
+    <p>
+    Your payment of $<%= @flight.price%> is required on the day of departure.
+    </p>
+    <p>
+     To view confirmation of your booking please visit:
+    </p>
+    <p>
+    <%= link_to 'Confirmation Link', booking_url(@booking.id)%>
+    </p>
+    <p>Looking forward to your payment,</p>
+    <p> Odin Airs</p>
+  </body>
+</html>
