@@ -5,8 +5,7 @@ class PassengerMailer < ApplicationMailer
     @passenger = params[:passenger]
     @booking = params[:booking]
     @flight = @booking.flight
-    @url = 'localhost:3000'
-
+    
     mail(to: @passenger.email,
          subject: "Your trip to #{@flight.to.location} is booked!")
   end
